@@ -269,7 +269,9 @@ $transition: .3s;
 //        color: $yellow;
     }
     img.logo {
-        display: none;
+        display: block;
+    	height: 50%;
+        margin: 2rem auto;
     }
 }
 
@@ -438,7 +440,7 @@ $transition: .3s;
 		width: 100%;
 		margin: 0; padding: 0;
 		li.product {
-			width: 33.33333333333%;
+			width: 50%;
 	        position: relative;
             margin: 0 auto;
 	        // float: left;
@@ -452,7 +454,7 @@ $transition: .3s;
 				position: relative;
 	            display: block;
 	            width: 100%;
-				height: 25.5rem;
+                height: 12rem;
 	            margin: 0 auto;
 	            @include filter(grayscale(100%));
 				// filter: url('../../images/filter.svg#grayscale');
@@ -497,7 +499,7 @@ $transition: .3s;
 
 .section.background {
     position: relative;
-    height: 2rem;
+    height: 5rem;
     background: transparent;
     h1 {
         position: absolute;
@@ -535,6 +537,12 @@ $transition: .3s;
         display: inline-block;
         width: 45%;
         margin: 1rem 2.5%;
+    }
+    h1 {
+        font-size: 3.5rem;
+    }
+    &.dark {
+        padding-top: 0;
     }
 }
 
@@ -671,12 +679,6 @@ $transition: .3s;
         span.mission {
             font-size: 2rem;
         }
-        img.logo {
-            display: block;
-            position: absolute;
-            top: 2rem; left: 10%;
-        	height: 3rem;
-        }
     }
     
     .hb {
@@ -714,6 +716,17 @@ $transition: .3s;
         }
     }
     
+    .section.merch {
+        ul.products {
+            li.product {
+                img {
+                    width: 33.3333333333%;
+				    height: 25.5rem;
+                }
+            }
+        }
+    }
+    
     .section.background {
         height: 8rem;
         h1 {
@@ -728,6 +741,9 @@ $transition: .3s;
     .section.food {
         img {
             width: 20%;
+        }
+        h1 {
+            font-size: 6rem;
         }
     }
     
