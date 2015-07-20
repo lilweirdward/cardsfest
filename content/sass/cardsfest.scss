@@ -1,0 +1,748 @@
+@import 'compass/css3';
+@import 'compass/css3/filter';
+@import '../bourbon/bourbon';
+
+$header-font: 'Yanone Kaffeesatz', sans-serif;
+$secondary-header-font: 'Yanone Kaffeesatz', sans-serif;
+$copy-font: 'Raleway', sans-serif;
+
+$yellow: #FFC908;
+$red: #F10F00;
+$orange: #FC8800;
+$blue: #006A76;
+$black: #232323;
+$gray: #EEEEEE;
+
+
+/********************************************
+ 	BASE STYLES
+********************************************/
+* {
+	border: none;
+	// damn you IE
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+    font-family: $copy-font;
+    text-rendering: optimizeLegibility;
+    font-size: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+    font-family: $header-font;
+	font-weight: 700;
+	font-size: 3.5rem;
+    margin-bottom: 0.4em;
+}
+
+h2 {
+	font-family: $secondary-header-font;
+	font-size: 2.25rem;
+	font-weight: 300;
+	margin: 0;
+	border-bottom: 1px solid black;
+}
+
+a {
+    color: $red;
+    text-decoration: none;
+    font-style: italic;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+span.nohref {
+	color: $red;
+	text-indent: none;
+	font-style: italic;
+	cursor: pointer;
+}
+
+span.nohref:hover {
+	text-decoration: underline;
+}
+
+.section {
+    width: 100%;
+	padding: 2rem 0;
+	margin: 0;
+	clear: both;
+    background-color: white;
+    h1 {
+        margin-top: 0;
+    }
+}
+
+.container {
+	max-width: 85%;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	overflow: hidden;
+	p {
+		text-align: left;
+		font-weight: 300;
+	}
+}
+
+
+/********************************************
+	HEADER
+	Primary Page: 	 all/master page
+	Primary Purpose: obvious
+********************************************/
+
+$button-size : 1.25rem; 
+$transition: .3s;
+@mixin line {
+    display: inline-block;
+    width: $button-size;
+    height: 0.1875rem;
+    background: $black;
+    border-radius: 0.125rem;
+    @include transition(all $transition);
+}
+
+#header {
+    position: fixed;
+    top: 0;
+	right: 0;
+    height: 4rem;
+    width: 100%;
+	background-color: $gray;
+    @include transition(all $transition);
+    z-index: 4;
+//    .container {
+//        position: relative;
+//        overflow: visible;
+//    }
+    ul.navitems {
+        position: absolute;
+        display: none;
+        top: 100%; right: 0; left: 0;
+        height: 16rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: $black;
+        text-align: center;
+        @include transition(height $transition);
+        li {
+            position: static;
+            box-sizing: border-box;
+            height: 4rem;
+            padding: 1.5rem 0;
+            margin: 0 auto;
+            color: rgba(white, 0.8);
+            cursor: pointer;
+            @include transition(all $transition);
+            span {
+                display: none;
+                position: absolute;
+                bottom: 0; left: 0;
+                height: 0.125rem;
+                width: 0;
+                background-color: $yellow;
+            }
+            &:hover {
+                color: white;
+                background-color: $black;
+            }
+        }
+    }
+    img {
+        display: none;
+        &.reallogo {
+            display: block;
+            position: absolute;
+            top: 0; left: 1rem; bottom: 0;
+            height: 2rem;
+            margin: auto 0;
+        }
+    }
+    span.sp {
+        display: none;
+    }
+    .lines-button {
+        display: inline-block;
+        position: absolute;
+        top: 0; right: 0;
+        height: 4rem;
+        width: 4rem;
+        @include transition(all $transition);
+        cursor: pointer;
+        user-select: none;
+        background-color: $gray;
+        z-index: 1;
+        &:hover {
+            background-color: $black;
+            opacity: 1;
+            .lines {
+                &:before { top: 0.35rem; background: white; }
+                &:after { top: -0.35rem; background: white; }
+            }
+        }
+        &:active {
+            transition: 0;
+        }
+        &:focus {
+            outline: none;
+        }
+        &.x.close {
+            background-color: $black;
+            .lines {
+                /*overlay the lines by setting both their top values to 0*/
+                &:before, &:after{
+                    transform-origin: 50% 50%;
+                    top:0;
+                    width: $button-size;
+                    background: white;
+                }
+                // rotate the lines to form the x shape
+                &:before{
+                    transform: rotate3d(0,0,1,45deg); 
+                }
+                &:after{
+                    transform: rotate3d(0,0,1,-45deg); 
+                }
+            }
+            & ~ ul.navitems {
+                display: block;
+            }
+        }
+        .lines {
+            //create middle line
+            @include line;
+            position: relative;
+            /*hide the middle line*/
+            background: transparent; 
+            /*create the upper and lower lines as pseudo-elements of the middle line*/
+            &:before, &:after {
+                @include line;
+                position: absolute;
+                left:0;
+                content: '';
+                transform-origin: 0.125rem center;
+            }
+            &:before { top: 0.25rem; }
+            &:after { top: -0.25rem; }
+        }
+    }
+}
+
+.section.intro {
+    background: url('../../images/videos/1200-Gonzofest.png') no-repeat;
+    background-size: cover;
+    position: relative;
+    color: white;
+    video#bgvid {
+        display: none;
+        position: absolute;
+        top: 0; left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -100;
+        background: url('../../images/videos/1200-Gonzofest.png') no-repeat;
+        background-size: cover;
+    }
+    h1 {
+        font-size: 5rem;
+        margin: 2rem 0 0;
+        text-align: left;
+//        color: $yellow;
+    }
+    span.mission {
+        display: block;
+        margin: 0 auto 2rem;
+        text-align: left;
+//        color: $yellow;
+    }
+    img.logo {
+        display: none;
+    }
+}
+
+.artist-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hb { // used to stand for herringbone :(
+	position: relative;
+    width: 100%;
+    height: 75%;
+    float: left;
+    background-size: auto 125%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 2;
+    @include transition(all $transition);
+    .layer {
+        position: absolute;
+        top: 0; bottom: 0;
+        width: 100%;
+        padding-bottom: 1rem;
+        background-color: rgba($orange, 0.6);
+        color: white;
+        overflow-y: scroll;
+        opacity: 0;
+        @include transition(all $transition);
+        .strike {
+            display: block;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            span {
+                position: relative;
+                display: inline-block;
+                &:before, &:after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    height: 1px;
+                    background: white;
+                }
+                &:before {
+                    right: 100%;
+                    margin-right: 15px;
+                }
+                &:after {
+                    left: 100%;
+                    margin-left: 15px;
+                }
+            }
+        }
+        .deets {
+            display: none;
+            padding: 1rem 2rem;
+            .title {
+                text-align: center;
+            }
+        }
+    }
+    h1 {
+        font-size: 3.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    &.active {
+        z-index: 3;
+        .layer {
+            opacity: 1;
+            .strike {
+                display: none;
+            }
+            .deets {
+                display: block;
+            }
+        }
+    }
+    &:hover {
+        background-size: auto 135%;
+        z-index: 3;
+        .layer {
+            opacity: 1;
+        }
+    }
+    &.ja {
+        height: 100%;
+        background-image: url('https://dl.dropboxusercontent.com/u/86076126/1200%20%40%20%23LOWF4TH%20(Verbon%20Graves).jpg');
+    }
+    &.ls {
+        height: 100%;
+        background-image: url('https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xap1/t51.2885-15/10388043_1470381606537513_943913956_n.jpg');
+    }
+    &.cm {
+        background-image: url('http://static1.squarespace.com/static/5360134ce4b0c25f42c1f29a/536c3f1ae4b03a731bda98ba/536c3f26e4b03a731bda98d6/1399602985003/Meagan+Jordan+4.jpg');
+    }
+    &.fse {
+        background-image: url('https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xft1/t31.0-8/11731633_407131619492850_1451372770986639897_o.jpg');
+    }
+    &.se {
+        background-image: url('https://scontent-iad3-1.xx.fbcdn.net/hphotos-xpf1/t31.0-8/11026102_855614741177948_7234933820865938263_o.jpg');
+    }
+    &.bq {
+        background-image: url('https://scontent-iad3-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/1899910_862962700390205_7867859187065792344_n.jpg?oh=c0892dc3ab387da64ff3629372e2fd6e&oe=562894AA');
+        background-size: auto 150%;
+        &:hover {
+            background-size: auto 175%;
+        }
+    }
+    &.mr {
+        background-image: url('https://scontent-sea1-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10409288_385936911603111_5839781715589726846_n.jpg?oh=0b3ed86940b26c7ab2aa1c65cd5fe7ae&oe=56193ECF');
+    }
+}
+
+.section.calendar {
+    h1 {
+        font-size: 2.5rem;
+    }
+    .cal {
+        width: 100%;
+        padding: 4rem 0;
+        clear: both;
+        div {
+            box-sizing: border-box;
+            padding: 2rem 0;
+            float: left;
+            border-top: 1px solid $blue;
+        }
+        .time {
+            width: 20%;
+            margin: 0 2.5% 0 5%;
+            border-top-color: $orange;
+            span { 
+                font-weight: bold;
+                color: $blue; 
+            } 
+        }
+        .deets {
+            width: 65%;
+            margin: 0 5% 0 2.5%;
+            h1 {
+                font-size: 2rem;
+                margin: 0;
+                color: $orange;
+            }
+            h2 {
+                font-family: $copy-font;
+                font-size: 1rem;
+                font-weight: bold;
+                border-bottom: none;
+                margin: 0;
+                color: $blue;
+                span {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}
+
+.section.merch {
+    ul.products {
+        list-style: none;
+		width: 100%;
+		margin: 0; padding: 0;
+		li.product {
+			width: 33.33333333333%;
+	        position: relative;
+	        float: left;
+	        text-align: center;
+	        // padding: 1.5rem 0;
+			padding: 0;
+			margin: 0;
+	        // cursor: default;
+			a {
+				text-decoration: none;
+			}
+			img {
+				position: relative;
+	            display: block;
+	            width: 100%;
+				height: 25.5rem;
+	            margin: 0 auto;
+	            @include filter(grayscale(100%));
+				// filter: url('../../images/filter.svg#grayscale');
+	            @include transition(all 0.3s);
+	            // z-index: -1;
+			}
+			.overlay {
+				background-color: rgba($black, 0.75);
+	            // @include transition(all 0.3s);
+				display: none;
+				padding: 0 0 2rem;
+	            position: absolute;
+	            right: 0; bottom: 0; left: 0;
+				h3 {
+					display: block;
+					text-align: center;
+					color: white;
+					font-family: $header-font;
+					font-size: 3rem;
+					margin: 0 auto;
+					padding: 1rem 0;
+					text-decoration: none;
+					font-style: normal;
+					@include transition(top 0.25s, opacity 0.25s);
+				}
+			}
+			&:hover {
+		        img {
+		            @include filter(grayscale(0));
+					// filter: url('../../images/filter.svg#blur');
+		        }
+				// .overlay {
+				// 	top: auto; bottom: 0;
+				// }
+			}
+		}
+		li.first {
+			clear: none;
+		}
+	}
+}
+
+.section.background {
+    position: relative;
+    height: 2rem;
+    background: transparent;
+    h1 {
+        position: absolute;
+        bottom: 0; right: 0; left: 0;
+        width: 85%;
+        font-size: 5rem;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 0.75;
+        margin: 0 auto;
+        padding: 0;
+        color: white;
+    }
+    &#artists {
+        background: url('images/work-background.jpg') no-repeat left center;
+        background-size: 100% auto;
+    }
+    &#merch {
+        background: url('https://farm9.staticflickr.com/8683/16693392126_8390c6574f_b.jpg') no-repeat left center;
+        background-size: 100% auto;
+    }
+    &#calendar {
+        background: url('https://farm9.staticflickr.com/8146/7234311140_c5a3aedf15_k.jpg') no-repeat left center;
+        background-size: 100% auto;
+    }
+    &#sponsors {
+        background: url('../../images/cardsfest/tasteoflouisville.jpg') no-repeat left center;
+        background-size: 100% auto;
+    }
+}
+
+.section.food {
+    img {
+        display: inline-block;
+        width: 45%;
+        margin: 1rem 2.5%;
+    }
+}
+
+.section.map {
+    position: relative;
+    padding: 0;
+    height: 50%;
+    #map-canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.section.footer {
+    background-color: $blue;
+    color: white;
+    a {
+        color: $orange;
+    }
+    a.bigger {
+        text-transform: uppercase;
+        font-style: normal;
+        font-size: 1.35rem;
+        font-weight: bold;
+    }
+    hr {
+        width: 5rem;
+        height: 1px;
+        background-color: white;
+        margin: 1rem auto;
+    }
+}
+
+.button {
+	display: inline-block;
+	font-size: 2rem;
+	font-weight: normal;
+	padding: 0.5rem 2rem;
+	background-color: transparent;
+	border: 0.125rem solid white;
+    border-radius: 0.5rem;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+    font-style: normal;
+	cursor: pointer;
+	@include transition(all $transition);
+}
+
+.button:hover {
+	background-color: white;
+    color: black;
+	text-decoration: none;
+}
+
+@media only screen and (min-width: 481px) {
+    
+}
+
+@media only screen and (min-width: 768px) {
+    h1 {
+        font-size: 10rem;
+    }
+    
+    .section {
+        width: calc(100% - 8rem);
+        padding: 5rem 0;
+    }
+    
+    .container {
+        max-width: 60rem;
+        p {
+            font-size: 1.25rem;
+        }
+    }
+    
+    #header {
+        height: 100%;
+        width: 8rem;
+        ul.navitems {
+            display: block;
+            top: 0; right: auto; bottom: 0;
+            width: 8rem;
+            margin: auto 0;
+            background-color: transparent;
+            li {
+                position: relative;
+                margin: 0;
+                color: rgba(black, 0.8);
+                span {
+                    display: inline;
+                }
+            }
+        }
+        img {
+            &.logo {
+                display: block;
+                position: absolute;
+                right: 0; left: 0;
+                margin: 0 auto;
+            	bottom: 2rem;
+            	width: 50%;
+            }
+            &.reallogo {
+                display: none;
+            }
+        }
+        span.sp {
+            display: block;
+            position: absolute;
+            right: 0; left: 0;
+            margin: 0 auto;
+            text-align: center;
+            top: 2rem;
+            width: 80%;
+            img {
+                width: 100%;
+                display: block;
+            }
+        }
+        .lines-button {
+            display: none;
+        }
+    }
+    
+    .section.intro {
+        background: transparent;
+        video#bgvid {
+            display: block;
+        }
+        h1 {
+            font-size: 15rem;
+        }
+        span.mission {
+            font-size: 2rem;
+        }
+        img.logo {
+            display: block;
+            position: absolute;
+            top: 2rem; left: 10%;
+        	height: 2rem;
+        }
+    }
+    
+    .hb {
+        width: calc(50% - 4rem);
+        h1 {
+            font-size: 8rem;
+        }
+        &.active {
+            .layer {
+                background-color: $orange;
+            }
+        }
+        &.ja, &.cm, &.se {
+            .layer {
+                left: 0;
+            }
+            &.active {
+                .layer {
+                    left: 100%;
+                }
+            }
+        }
+        &.ls, &.fse, &.bq, &.mr {
+            .layer {
+                right: 0;
+            }
+            &.active {
+                .layer {
+                    right: 100%;
+                }
+            }
+        }
+        &.se, &.bq, &.mr {
+            width: calc(33.3333333333% - 2.66666667rem);
+        }
+    }
+    
+    .section.background {
+        height: 8rem;
+        h1 {
+            font-size: 12rem;
+            width: 60rem;
+        }
+        &#artists, &#calendar, &#merch, &#sponsors {
+            background: none;
+        }
+    }
+    
+    .section.food {
+        img {
+            width: 20%;
+        }
+    }
+    
+    .section.calendar {
+        h1 {
+            font-size: 6rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 1030px) {
+    
+}
+
+@media only screen and (min-width: 1240px) {
+    
+}
