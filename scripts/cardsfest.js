@@ -5,7 +5,11 @@ var calendarTop = $('#calendar').position().top;
 var merchTop = $('#merch').position().top;
 var sponsorsTop = $('#sponsors').position().top;
 var mapTop = $('#map-canvas').parent().position().top;
-var widget1200 = SC.Widget(document.getElementById('sc-widget-1200'));
+var widgetJA = SC.Widget(document.getElementById('sc-widget-ja'));
+var audioLS = $('#aud-ls');
+var widgetSE = SC.Widget(document.getElementById('sc-widget-se'));
+var widgetMR = SC.Widget(document.getElementById('sc-widget-mr'));
+var widgetBQ = SC.Widget(document.getElementById('sc-widget-bq'));
 
 /// ARGS DEFS:
 //  i = li ending (a = artists, c = calendar, s = sponsors)
@@ -75,9 +79,35 @@ $('.hb').click(function() {
 	$(this).toggleClass('active').promise().done(function() {
 		if ($(this).hasClass('ja')) {
 			if ($(this).hasClass('active')) {
-				widget1200.play();
+				widgetJA.play();
 			} else {
-				widget1200.pause();
+				widgetJA.pause();
+			}
+		} else if ($(this).hasClass('ls')) {
+			if ($(this).hasClass('active')) {
+				audioLS.controls = true;
+				audioLS.play();
+			} else {
+				audioLS.controls = false;
+				audioLS.pause();
+			}
+		} else if ($(this).hasClass('se')) {
+			if ($(this).hasClass('active')) {
+				widgetSE.play();
+			} else {
+				widgetSE.pause();
+			}
+		} else if ($(this).hasClass('mr')) {
+			if ($(this).hasClass('active')) {
+				widgetMR.play();
+			} else {
+				widgetMR.pause();
+			}
+		} else if ($(this).hasClass('bq')) {
+			if ($(this).hasClass('active')) {
+				widgetBQ.play();
+			} else {
+				widgetBQ.pause();
 			}
 		}
 	});
