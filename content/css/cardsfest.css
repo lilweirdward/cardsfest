@@ -704,8 +704,10 @@ span.nohref:hover {
     width: calc(33.3333333333% - 2.66666667rem);
   }
 
-  .section.merch ul.products li.product img {
+  .section.merch ul.products li.product {
     width: 33.3333333333%;
+  }
+  .section.merch ul.products li.product img {
     height: 25.5rem;
   }
 
