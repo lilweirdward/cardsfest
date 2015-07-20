@@ -364,30 +364,30 @@ span.nohref:hover {
 }
 .hb.ja {
   height: 100%;
-  background-image: url("https://dl.dropboxusercontent.com/u/86076126/1200%20%40%20%23LOWF4TH%20(Verbon%20Graves).jpg");
+  background-image: url("../../images/cardsfest/artists/ja.jpg");
 }
 .hb.ls {
   height: 100%;
-  background-image: url("https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xap1/t51.2885-15/10388043_1470381606537513_943913956_n.jpg");
+  background-image: url("../../images/cardsfest/artists/ls.jpg");
 }
 .hb.cm {
-  background-image: url("http://static1.squarespace.com/static/5360134ce4b0c25f42c1f29a/536c3f1ae4b03a731bda98ba/536c3f26e4b03a731bda98d6/1399602985003/Meagan+Jordan+4.jpg");
+  background-image: url("../../images/cardsfest/artists/cm.jpg");
 }
 .hb.fse {
-  background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xft1/t31.0-8/11731633_407131619492850_1451372770986639897_o.jpg");
+  background-image: url("../../images/cardsfest/artists/fse.jpg");
 }
 .hb.se {
-  background-image: url("https://scontent-iad3-1.xx.fbcdn.net/hphotos-xpf1/t31.0-8/11026102_855614741177948_7234933820865938263_o.jpg");
+  background-image: url("../../images/cardsfest/artists/se.jpg");
 }
 .hb.bq {
-  background-image: url("https://scontent-iad3-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/1899910_862962700390205_7867859187065792344_n.jpg?oh=c0892dc3ab387da64ff3629372e2fd6e&oe=562894AA");
+  background-image: url("../../images/cardsfest/artists/bq.jpg");
   background-size: auto 150%;
 }
 .hb.bq:hover {
   background-size: auto 175%;
 }
 .hb.mr {
-  background-image: url("https://scontent-sea1-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10409288_385936911603111_5839781715589726846_n.jpg?oh=0b3ed86940b26c7ab2aa1c65cd5fe7ae&oe=56193ECF");
+  background-image: url("../../images/cardsfest/artists/mr.jpg");
 }
 
 .section.calendar h1 {
@@ -443,10 +443,9 @@ span.nohref:hover {
 .section.merch ul.products li.product {
   width: 33.33333333333%;
   position: relative;
-  float: left;
+  margin: 0 auto;
   text-align: center;
   padding: 0;
-  margin: 0;
 }
 .section.merch ul.products li.product a {
   text-decoration: none;
@@ -676,7 +675,7 @@ span.nohref:hover {
     position: absolute;
     top: 2rem;
     left: 10%;
-    height: 2rem;
+    height: 3rem;
   }
 
   .hb {
